@@ -1,1 +1,1 @@
-java gj
+java gj ssm
