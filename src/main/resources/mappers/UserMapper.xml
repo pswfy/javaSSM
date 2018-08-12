@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gj.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.gj.pojo.User" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="uLogincode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="upassword" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ustatus" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="urole" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="question" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="answer" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mlastloginip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mlastlogindate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uLogincode, upassword, email, phone, ustatus, urole, question, answer, mlastloginip, 
+    mlastlogindate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gj.pojo.User" >
+    insert into user (id, uLogincode, upassword, 
+      email, phone, ustatus, 
+      urole, question, answer, 
+      mlastloginip, mlastlogindate)
+    values (#{id,jdbcType=INTEGER}, #{ulogincode,jdbcType=VARCHAR}, #{upassword,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{ustatus,jdbcType=INTEGER},
+      #{urole,jdbcType=INTEGER}, #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR},
+      #{mlastloginip,jdbcType=VARCHAR}, #{mlastlogindate,jdbcType=TIMESTAMP})
+  </insert>
+
+
+  <insert id="insertSelective" parameterType="com.gj.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ulogincode != null" >
+        uLogincode,
+      </if>
+      <if test="upassword != null" >
+        upassword,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="ustatus != null" >
+        ustatus,
+      </if>
+      <if test="urole != null" >
+        urole,
+      </if>
+      <if test="question != null" >
+        question,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="mlastloginip != null" >
+        mlastloginip,
+      </if>
+      <if test="mlastlogindate != null" >
+        mlastlogindate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ulogincode != null" >
+        #{ulogincode,jdbcType=VARCHAR},
+      </if>
+      <if test="upassword != null" >
+        #{upassword,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ustatus != null" >
+        #{ustatus,jdbcType=INTEGER},
+      </if>
+      <if test="urole != null" >
+        #{urole,jdbcType=INTEGER},
+      </if>
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="mlastloginip != null" >
+        #{mlastloginip,jdbcType=VARCHAR},
+      </if>
+      <if test="mlastlogindate != null" >
+        #{mlastlogindate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <!--根据id修改有值得字段-->
+  <update id="updateByPrimaryKeySelective" parameterType="com.gj.pojo.User" >
+    update user
+    <set >
+      <if test="ulogincode != null" >
+        uLogincode = #{ulogincode,jdbcType=VARCHAR},
+      </if>
+      <if test="upassword != null" >
+        upassword = #{upassword,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ustatus != null" >
+        ustatus = #{ustatus,jdbcType=INTEGER},
+      </if>
+      <if test="urole != null" >
+        urole = #{urole,jdbcType=INTEGER},
+      </if>
+      <if test="question != null" >
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="mlastloginip != null" >
+        mlastloginip = #{mlastloginip,jdbcType=VARCHAR},
+      </if>
+      <if test="mlastlogindate != null" >
+        mlastlogindate = #{mlastlogindate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gj.pojo.User" >
+    update user
+    set uLogincode = #{ulogincode,jdbcType=VARCHAR},
+      upassword = #{upassword,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      ustatus = #{ustatus,jdbcType=INTEGER},
+      urole = #{urole,jdbcType=INTEGER},
+      question = #{question,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      mlastloginip = #{mlastloginip,jdbcType=VARCHAR},
+      mlastlogindate = #{mlastlogindate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--校验用户名是否存在-->
+  <select id="checkUsername" resultType="int" parameterType="string">
+      select count(1)
+      from user
+      WHERE uLogincode=#{uLogincode}
+  </select>
+  <!--检验email是否已经存在-->
+  <select id="checkEmail" resultType="int" parameterType="string">
+    select count(1)
+    from user
+    WHERE email=#{email}
+  </select>
+  <!--登录验证用户名和密码-->
+  <select id="selectLogin" resultType="com.gj.pojo.User" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from USER
+    WHERE uLogincode=#{uLogincode}
+    and upassword=#{upassword}
+  </select>
+  <!--用户忘记密码问题-->
+  <select id="selectQuestionByUsername" resultType="string" parameterType="string">
+    SELECT
+    question
+    FROM USER
+    where uLogincode=#{uLogincode}
+  </select>
+  <!--检验忘记密的问题是否正确-->
+  <select id="checkAnswer" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    FROM USER
+    WHERE uLogincode=#{uLogincode}
+    and question=#{question}
+    and answer=#{answer}
+  </select>
+  <!--忘记密码中的重置密码-->
+  <update id="updataPasswordByUsername" parameterType="map">
+    UPDATE USER
+    SET upassword=#{passwordNew}
+    where uLogincode=#{uLogincode}
+  </update>
+  <!--根据用户id校验用户的旧密码-->
+  <select id="checkPassword" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    from USER
+    WHERE  id=#{id}
+    and upassword=#{upassword}
+  </select>
+  <!--根据用户id校验用户email-->
+  <select id="checkEmailUserId" resultType="int" parameterType="map">
+    SELECT
+    COUNT(1)
+    from USER
+    WHERE email=#{email}
+    and id!=#{userId}
+  </select>
+  <!--根据id查找用户信息-->
+  <select id="selectUserId" resultType="com.gj.pojo.User" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    from USER
+    WHERE id=#{id}
+  </select>
+  <!--修改用户登录时间和IP-->
+  <update id="updataTimeIp"  parameterType="map">
+     UPDATE
+      user
+    SET
+      mlastloginip= #{ip},
+      mlastlogindate=now()
+    WHERE id=#{id};
+
+  </update>
+
+</mapper>

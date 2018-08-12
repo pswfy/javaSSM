@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gj.dao.ProjectcMainMapper" >
+  <resultMap id="BaseResultMap" type="com.gj.pojo.ProjectcMain" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="projectclassid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcontract" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcompany" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ptimeneed" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ptbackdrop" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcomment" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="paptitudevneed" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mainimage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gj.pojo.ProjectcMainWithBLOBs" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="projectclassid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcontract" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcompany" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ptimeneed" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ptbackdrop" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcomment" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="paptitudevneed" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mainimage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="subimages" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+      <arg column="detail" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, projectclassid, name, pcode, pcontract, pcompany, ptimeneed, ptbackdrop, pcomment, 
+    paptitudevneed, subtitle, mainimage, price, status, createtime, updatetime
+  </sql>
+  <sql id="Blob_Column_List" >
+    subimages, detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from projectc
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from projectc
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gj.pojo.ProjectcMainWithBLOBs" >
+    insert into projectc (id, projectclassid, name, 
+      pcode, pcontract, pcompany, 
+      ptimeneed, ptbackdrop, pcomment, 
+      paptitudevneed, subtitle, mainimage, 
+      price, status, createtime, 
+      updatetime, subimages, detail
+      )
+    values (#{id,jdbcType=INTEGER}, #{projectclassid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{pcode,jdbcType=VARCHAR}, #{pcontract,jdbcType=VARCHAR}, #{pcompany,jdbcType=INTEGER}, 
+      #{ptimeneed,jdbcType=VARCHAR}, #{ptbackdrop,jdbcType=VARCHAR}, #{pcomment,jdbcType=VARCHAR}, 
+      #{paptitudevneed,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, #{mainimage,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, row(),
+      row(), #{subimages,jdbcType=LONGVARCHAR}, #{detail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gj.pojo.ProjectcMainWithBLOBs" >
+    insert into projectc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectclassid != null" >
+        projectclassid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pcode != null" >
+        pcode,
+      </if>
+      <if test="pcontract != null" >
+        pcontract,
+      </if>
+      <if test="pcompany != null" >
+        pcompany,
+      </if>
+      <if test="ptimeneed != null" >
+        ptimeneed,
+      </if>
+      <if test="ptbackdrop != null" >
+        ptbackdrop,
+      </if>
+      <if test="pcomment != null" >
+        pcomment,
+      </if>
+      <if test="paptitudevneed != null" >
+        paptitudevneed,
+      </if>
+      <if test="subtitle != null" >
+        subtitle,
+      </if>
+      <if test="mainimage != null" >
+        mainimage,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="subimages != null" >
+        subimages,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectclassid != null" >
+        #{projectclassid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pcode != null" >
+        #{pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pcontract != null" >
+        #{pcontract,jdbcType=VARCHAR},
+      </if>
+      <if test="pcompany != null" >
+        #{pcompany,jdbcType=INTEGER},
+      </if>
+      <if test="ptimeneed != null" >
+        #{ptimeneed,jdbcType=VARCHAR},
+      </if>
+      <if test="ptbackdrop != null" >
+        #{ptbackdrop,jdbcType=VARCHAR},
+      </if>
+      <if test="pcomment != null" >
+        #{pcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="paptitudevneed != null" >
+        #{paptitudevneed,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mainimage != null" >
+        #{mainimage,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        row(),
+      </if>
+      <if test="updatetime != null" >
+        row(),
+      </if>
+      <if test="subimages != null" >
+        #{subimages,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gj.pojo.ProjectcMainWithBLOBs" >
+    update projectc
+    <set >
+      <if test="projectclassid != null" >
+        projectclassid = #{projectclassid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pcode != null" >
+        pcode = #{pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pcontract != null" >
+        pcontract = #{pcontract,jdbcType=VARCHAR},
+      </if>
+      <if test="pcompany != null" >
+        pcompany = #{pcompany,jdbcType=INTEGER},
+      </if>
+      <if test="ptimeneed != null" >
+        ptimeneed = #{ptimeneed,jdbcType=VARCHAR},
+      </if>
+      <if test="ptbackdrop != null" >
+        ptbackdrop = #{ptbackdrop,jdbcType=VARCHAR},
+      </if>
+      <if test="pcomment != null" >
+        pcomment = #{pcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="paptitudevneed != null" >
+        paptitudevneed = #{paptitudevneed,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        subtitle = #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mainimage != null" >
+        mainimage = #{mainimage,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        row(),
+      </if>
+      <if test="subimages != null" >
+        subimages = #{subimages,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gj.pojo.ProjectcMainWithBLOBs" >
+    update projectc
+    set projectclassid = #{projectclassid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      pcode = #{pcode,jdbcType=VARCHAR},
+      pcontract = #{pcontract,jdbcType=VARCHAR},
+      pcompany = #{pcompany,jdbcType=INTEGER},
+      ptimeneed = #{ptimeneed,jdbcType=VARCHAR},
+      ptbackdrop = #{ptbackdrop,jdbcType=VARCHAR},
+      pcomment = #{pcomment,jdbcType=VARCHAR},
+      paptitudevneed = #{paptitudevneed,jdbcType=VARCHAR},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
+      mainimage = #{mainimage,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = row(),
+      subimages = #{subimages,jdbcType=LONGVARCHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gj.pojo.ProjectcMain" >
+    update projectc
+    set projectclassid = #{projectclassid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      pcode = #{pcode,jdbcType=VARCHAR},
+      pcontract = #{pcontract,jdbcType=VARCHAR},
+      pcompany = #{pcompany,jdbcType=INTEGER},
+      ptimeneed = #{ptimeneed,jdbcType=VARCHAR},
+      ptbackdrop = #{ptbackdrop,jdbcType=VARCHAR},
+      pcomment = #{pcomment,jdbcType=VARCHAR},
+      paptitudevneed = #{paptitudevneed,jdbcType=VARCHAR},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
+      mainimage = #{mainimage,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = row()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
