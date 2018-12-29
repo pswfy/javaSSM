@@ -1,7 +1,7 @@
 package com.gj.common;
 
 /**
- * Created by geely
+ * Created by pswfy
  */
 public enum ResponseCode {
 

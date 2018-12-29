@@ -55,6 +55,8 @@ public class ProjectMainServiceImpl implements IProjectMainService {
         return  ServerResponse.createByErrorMessage("添加项目或更新项目叁数错误");
     }
 
+
+
     /**
      * 修改项目上下架的状态
      * @param productId
@@ -112,7 +114,7 @@ public class ProjectMainServiceImpl implements IProjectMainService {
         productDetailVo.setPrice(productDetailVo.getPrice());
         productDetailVo.setStatus(productDetailVo.getStatus());
 
-        productDetailVo.setImagesHost(PropertiesUtil.getProperty("ftp.server.http.prefix","ftp://127.0.0.1/images/"));
+        productDetailVo.setImagesHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://www.gj.com/"));
         ProjectcMainWithBLOBs projectcMainWithBLOBs1=projectcMainMapper.selectByPrimaryKey(projectcMainWithBLOBs.getProjectclassid());
         if(projectcMainWithBLOBs1==null){
             productDetailVo.setProjectclassid(0);

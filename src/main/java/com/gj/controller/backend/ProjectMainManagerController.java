@@ -2,6 +2,7 @@ package com.gj.controller.backend;
 import com.gj.common.Const;
 import com.gj.common.ResponseCode;
 import com.gj.common.ServerResponse;
+import com.gj.pojo.ProjectcMain;
 import com.gj.pojo.ProjectcMainWithBLOBs;
 import com.gj.pojo.User;
 import com.gj.service.IProjectMainService;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * Created by Administrator on 2018\5\6 0006.
  */
 @Controller
-@RequestMapping("/background/project")
+@RequestMapping("/backgroud/project")
 public class ProjectMainManagerController {
 
     @Autowired
@@ -33,7 +34,7 @@ public class ProjectMainManagerController {
      * @param projectcMainWithBLOBs
      * @return
      */
-    @RequestMapping(value = "save.do",method = RequestMethod.GET)
+    @RequestMapping(value = "save.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse productSave(HttpSession session, ProjectcMainWithBLOBs projectcMainWithBLOBs){
         User user=(User) session.getAttribute(Const.CURRENT_USER);
@@ -47,6 +48,7 @@ public class ProjectMainManagerController {
             return ServerResponse.createByErrorMessage("不是管理员无权限操作");
         }
     }
+
     /**
      * 修改项目上下架的状态
      * @param session
@@ -54,7 +56,7 @@ public class ProjectMainManagerController {
      * @param status
      * @return
      */
-    @RequestMapping(value = "setSaleStatus.do",method = RequestMethod.GET)
+    @RequestMapping(value = "setSaleStatus.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse setSaleStatus(HttpSession session, Integer productId,Integer status){
         User user=(User) session.getAttribute(Const.CURRENT_USER);
@@ -68,8 +70,13 @@ public class ProjectMainManagerController {
         }
     }
 
-
-    @RequestMapping(value = "detail.do",method = RequestMethod.GET)
+    /**
+     * 获取项目信息
+     * @param session
+     * @param productId
+     * @return
+     */
+    @RequestMapping(value = "detail.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getdetail(HttpSession session, Integer productId){
         User user=(User) session.getAttribute(Const.CURRENT_USER);

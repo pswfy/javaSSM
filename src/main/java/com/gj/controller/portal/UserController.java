@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by geely
+ * Created by pswfy
  */
 @Controller
 @RequestMapping("/user")
@@ -45,14 +45,17 @@ public class UserController {
 
     /**
      * 获取用户登录的ip和date
-     *
      * @param request
      * @param id
      * @return
      */
     @RequestMapping(value = "get_id_date.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<String> GetIdAndDate(HttpServletRequest request, String id) {
+    public ServerResponse<String> GetIdAndDate(HttpSession session,HttpServletRequest request, String id) {
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null) {
+            return ServerResponse.createByErrorMessage("用户未登录");
+        }
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -91,8 +94,7 @@ public class UserController {
     }
 
     /**
-     * 用户对出登录
-     *
+     * 用户退出登录
      * @param session
      * @return
      */
@@ -113,15 +115,11 @@ public class UserController {
     @RequestMapping(value = "register.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> register(User user) {
-        System.out.println("密码:" + user.getUpassword());
-        System.out.println("账号:" + user.getUlogincode());
-        System.out.println("邮箱:" + user.getEmail());
         return iUserService.register(user);
     }
 
     /**
      * 校验email和用户名是否存在接口
-     *
      * @return username
      */
     @RequestMapping(value = "check_valid.do", method = RequestMethod.POST)
@@ -132,7 +130,6 @@ public class UserController {
 
     /**
      * 获取用户登录信息的接口
-     *
      * @return
      */
     @RequestMapping(value = "get_user_info.do", method = RequestMethod.POST)
@@ -175,7 +172,6 @@ public class UserController {
 
     /**
      * 校验问题的答案是否正确接口
-     *
      * @param uLogincode
      * @param question
      * @param answer
@@ -204,7 +200,6 @@ public class UserController {
 
     /**
      * 登录下重置密码
-     *
      * @param session
      * @param passwordOld
      * @param passwordNew

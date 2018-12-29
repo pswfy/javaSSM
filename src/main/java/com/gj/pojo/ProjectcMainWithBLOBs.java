@@ -8,7 +8,26 @@ public class ProjectcMainWithBLOBs extends ProjectcMain {
 
     private String detail;
 
-    public ProjectcMainWithBLOBs(Integer id, Integer projectclassid, String name, String pcode, String pcontract, Integer pcompany, String ptimeneed, String ptbackdrop, String pcomment, String paptitudevneed, String subtitle, String mainimage, BigDecimal price, Integer status, Date createtime, Date updatetime, String subimages, String detail) {
+    public ProjectcMainWithBLOBs(
+            Integer id,
+            Integer projectclassid,
+            String name,
+            String pcode,
+            String pcontract,
+            Integer pcompany,
+            String ptimeneed,
+            String ptbackdrop,
+            String pcomment,
+            String paptitudevneed,
+            String subtitle,
+            String mainimage,
+            BigDecimal price,
+            Integer status,
+            Date createtime,
+            Date updatetime,
+            String subimages,
+            String detail
+    ) {
         super(id, projectclassid, name, pcode, pcontract, pcompany, ptimeneed, ptbackdrop, pcomment, paptitudevneed, subtitle, mainimage, price, status, createtime, updatetime);
         this.subimages = subimages;
         this.detail = detail;

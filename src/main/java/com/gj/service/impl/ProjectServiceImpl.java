@@ -74,7 +74,7 @@ public class ProjectServiceImpl implements IProjectService {
     public ServerResponse<List<com.gj.pojo.ProjectClass>> getChildrenParallelProjectClass(Integer parentid){
         List<com.gj.pojo.ProjectClass> projectclassList =projectClassMapper.selectProjectChildParentId(parentid);
         if(CollectionUtils.isEmpty(projectclassList)){
-            logger.info("未找到当前前分类的子分类");
+            logger.info("未找到当前前分类的子分类");//打印日志
         }
         return ServerResponse.createBySuccess(projectclassList);
     }

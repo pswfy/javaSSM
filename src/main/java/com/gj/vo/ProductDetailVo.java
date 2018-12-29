@@ -7,25 +7,53 @@ import java.math.BigDecimal;
  */
 public class ProductDetailVo {
 
-    private Integer id;
+    private Integer id;//项目id
 
-    private Integer projectclassid;
+    private Integer projectclassid;//分类id,对应projectclass表的parentid
 
-    private String name;
+    private String name;//项目名称
 
-    private String pcode;
+    private String pcode;//项目编号
 
-    private String pcontract;
+    private String pcontract;//项目简介
 
-    private Integer pcompany;
+    private Integer pcompany;//承接行业
 
-    private String ptimeneed;
+    private String ptimeneed;//预计工期（月）
 
-    private String ptbackdrop;
+    private String ptbackdrop;//项目背景
 
-    private String pcomment;
+    private String pcomment;//项目背景
 
-    private  String detail;
+    private String detail;//项目详情富文本
+
+    private String paptitudevneed;//项目所需资质
+
+    private String subtitle;//项目副标题
+
+    private String mainimage;//项目主图,url相对地址
+
+    private BigDecimal price;//项目报价,单位-元保留两位小数
+
+    private Integer status;//项目状态.1-在售 2-下架 3-删除
+
+    private String createtime;//创建时间
+
+    private String updatetime;//修改时间
+
+    private String subimages;//图片地址,json格式,扩展用
+
+
+
+
+
+    private String imagesHost;//图片服务器的全cui
+
+    private String DarentCategoryId;//父分类ID
+
+
+    private Integer narentCategoryId;
+
 
     public String getDetail() {
         return detail;
@@ -34,30 +62,6 @@ public class ProductDetailVo {
     public void setDetail(String detail) {
         this.detail = detail;
     }
-
-    private String paptitudevneed;
-
-    private String subtitle;
-
-    private String mainimage;
-
-    private BigDecimal price;
-
-    private Integer status;
-
-    private String createtime;
-
-    private String updatetime;
-
-    private  String imagesHost;
-
-    private  String subimages;
-
-    private  String DarentCategoryId;
-
-
-    private Integer narentCategoryId;
-
 
     public String getDarentCategoryId() {
         return DarentCategoryId;
